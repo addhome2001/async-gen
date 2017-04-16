@@ -47,6 +47,11 @@ function serialGen(generator) {
       });
     }
 
+    // yield a function
+    if (typeof value === 'function') {
+      return process(gen.next(value()));
+    }
+
     // otherwise
     return process(gen.next(value));
   }

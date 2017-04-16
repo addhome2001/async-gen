@@ -20,7 +20,8 @@ ava('yield primitives type', t =>
 ava('yield Function', t =>
   sg(function* () {
     const fn = () => 'function';
-    return yield fn();
+    const result = yield fn;
+    return result;
   }).then((result) => {
     t.deepEqual(result, 'function');
   }),
