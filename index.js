@@ -1,6 +1,10 @@
 function serialGen(generator) {
   var gen = generator();
 
+  if (typeof Promise !== 'function') {
+    throw Error('Maybe your environment don\'t support Promise.');
+  }
+
   if (typeof gen.next !== 'function') {
     throw Error('You must provide the Generator function.');
   }
