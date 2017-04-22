@@ -1,4 +1,4 @@
-function serialGen(generator) {
+function asyncGen(generator) {
   var gen = generator();
 
   if (typeof Promise !== 'function') {
@@ -59,4 +59,4 @@ function serialGen(generator) {
   return process(gen.next());
 }
 
-module.exports = serialGen;
+module.exports = asyncGen;

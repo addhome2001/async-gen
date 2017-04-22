@@ -1,8 +1,8 @@
 import ava from 'ava';
-import sg from './';
+import asyncGen from './';
 
 ava('yield pure Promise', t =>
-  sg(function* () {
+  asyncGen(function* () {
     return yield Promise.resolve('promise');
   }).then((result) => {
     t.is(result, 'promise');
@@ -10,7 +10,7 @@ ava('yield pure Promise', t =>
 );
 
 ava('yield primitives type', t =>
-  sg(function* () {
+  asyncGen(function* () {
     return yield 'primitives';
   }).then((result) => {
     t.is(result, 'primitives');
@@ -18,7 +18,7 @@ ava('yield primitives type', t =>
 );
 
 ava('yield Function', t =>
-  sg(function* () {
+  asyncGen(function* () {
     const fn = () => 'function';
     const result = yield fn;
     return result;
@@ -28,7 +28,7 @@ ava('yield Function', t =>
 );
 
 ava('yield Generator', t =>
-  sg(function* () {
+  asyncGen(function* () {
     const gen = function* () {
       const result1 = yield 'generator1';
       const result2 = yield 'generator2';
@@ -41,7 +41,7 @@ ava('yield Generator', t =>
 );
 
 ava('yield array of Promise 1', t =>
-  sg(function* () {
+  asyncGen(function* () {
     const result1 = yield Promise.resolve('array1');
     const result2 = yield Promise.resolve('array2');
     return [result1, result2];
@@ -51,7 +51,7 @@ ava('yield array of Promise 1', t =>
 );
 
 ava('yield array of Promise 2', t =>
-  sg(function* () {
+  asyncGen(function* () {
     const a = Promise.resolve('array1');
     const b = Promise.resolve('array2');
     const c = Promise.resolve('array3');
@@ -62,7 +62,7 @@ ava('yield array of Promise 2', t =>
 );
 
 ava('yield object of Promise', t =>
-  sg(function* () {
+  asyncGen(function* () {
     yield {
       1: Promise.resolve('object1'),
       2: Promise.resolve('object2'),
@@ -71,13 +71,13 @@ ava('yield object of Promise', t =>
 );
 
 ava('should throw error when reject by Promise', t =>
-  sg(function* () {
+  asyncGen(function* () {
     yield Promise.reject(new Error('boom'));
   }).catch(err => t.is(err.message, 'boom')),
 );
 
 ava('should throw error if dose not receive a Generator function', (t) => {
-  const fn = () => sg(() => 'Throw an Error');
+  const fn = () => asyncGen(() => 'Throw an Error');
   const error = t.throws(() => {
     fn();
   }, Error);

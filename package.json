@@ -1,5 +1,5 @@
 {
-  "name": "serial-gen",
+  "name": "async-gen",
   "description": "",
   "version": "0.0.1",
   "author": {
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/addhome2001/serial-gen.git"
+    "url": "git://github.com/addhome2001/async-gen.git"
   },
   "main": "index.js",
   "engines": {
@@ -17,7 +17,7 @@
   },
   "keywords": [
     "generator",
-    "serial"
+    "async"
   ],
   "scripts": {
     "test:watch": "./node_modules/.bin/ava -w --verbose",
