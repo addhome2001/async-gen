@@ -40,7 +40,7 @@ ava('yield Generator', t =>
   }),
 );
 
-ava('yield array of Promise 1', t =>
+ava('yield Promise of array', t =>
   asyncGen(function* () {
     const result1 = yield Promise.resolve('array1');
     const result2 = yield Promise.resolve('array2');
@@ -50,7 +50,7 @@ ava('yield array of Promise 1', t =>
   }),
 );
 
-ava('yield array of Promise 2', t =>
+ava('yield Promise of array', t =>
   asyncGen(function* () {
     const a = Promise.resolve('array1');
     const b = Promise.resolve('array2');
@@ -61,7 +61,7 @@ ava('yield array of Promise 2', t =>
   }),
 );
 
-ava('yield object of Promise', t =>
+ava('yield Promise of object', t =>
   asyncGen(function* () {
     yield {
       1: Promise.resolve('object1'),
