@@ -70,13 +70,13 @@ ava('yield Promise of object', t =>
   }).then(result => t.deepEqual(result, { 1: 'object1', 2: 'object2' })),
 );
 
-ava('should throw error when reject by Promise', t =>
+ava('throw error when reject by Promise', t =>
   asyncGen(function* () {
     yield Promise.reject(new Error('boom'));
   }).catch(err => t.is(err.message, 'boom')),
 );
 
-ava('should throw error if dose not receive a Generator function', (t) => {
+ava('throw error if dose not receive a Generator function', (t) => {
   const fn = () => asyncGen(() => 'Throw an Error');
   const error = t.throws(() => {
     fn();
